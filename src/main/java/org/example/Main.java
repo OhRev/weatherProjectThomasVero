@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONObject;
 
 public class Main {
-    public static <JSONObject> void main(String[] args)
+    public static void main(String[] args)
             throws URISyntaxException, ExecutionException, InterruptedException {
         // Appel api
 
@@ -24,16 +24,14 @@ public class Main {
         HttpRequest request = HttpRequest.newBuilder().uri(line_api_url).GET().build();
 
         // demande au client de faire la requete
-        org.json.JSONObject result = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenApply(HttpResponse::body).thenApply(org.json.JSONObject::new).get();
-        org.json.JSONObject main = result.getJSONObject("main");
+        JSONObject result = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body).thenApply(JSONObject::new).get();
+        JSONObject main = result.getJSONObject("main");
         float temp = main.getFloat("temp");
 
 
         System.out.println(main);
         System.out.println(temp);
-
-
 
     }
 }
