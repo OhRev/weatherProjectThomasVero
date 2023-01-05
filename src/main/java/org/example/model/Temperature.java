@@ -1,14 +1,19 @@
 package org.example.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Temperature {
     int id;
     Date timesstamp;
     String city;
-    double temperature;
+    float temperature;
 
-    public Temperature(int id, Date timesstamp, String city, double temperature) {
+    public Temperature(Date timesstamp, String city, float temperature) {
+        this.timesstamp = timesstamp;
+        this.city = city;
+        this.temperature = temperature;
+    }
+    public Temperature(int id, Date timesstamp, String city, float temperature) {
         this.id = id;
         this.timesstamp = timesstamp;
         this.city = city;
@@ -39,11 +44,11 @@ public class Temperature {
         this.city = city;
     }
 
-    public double getTemperature() {
+    public float getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(double temperature) {
+    public void setTemperature(float temperature) {
         this.temperature = temperature;
     }
 

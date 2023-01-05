@@ -6,9 +6,9 @@ public class MySqlConnection {
     private static Connection connection;
     // static block
     static {
-        String username = "root";
-        String password = "root";
-        String url = "jdbc:mysql://localhost:3306/cours_jdbc";
+        String username = "TomVe";
+        String password = "pwd123";
+        String url = "jdbc:mysql://localhost:3306/weather";
         try {
             // charger le driver
             Class.forName("com.mysql.cj.jdbc.Driver");
