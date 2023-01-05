@@ -1,22 +1,9 @@
 package org.example;
 
 import java.net.*;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
-
 import org.example.model.Lambda;
-import org.json.*;
-import java.sql.Date;
-import java.sql.SQLOutput;
-import java.util.concurrent.ExecutionException;
-import org.example.api.Api;
-import org.example.dao.TemperatureDao;
-import org.example.model.Temperature;
-import org.json.JSONObject;
 
 public class Main {
     public static void main(String[] args)
@@ -55,23 +42,40 @@ public class Main {
         System.out.println(tempDao.readById(4));*/
         System.out.println("Démarage du truc, entrez 0 pour arrêter");
         Lambda l = new Lambda();
-        boolean stop = false;
         String entree = "";
-        while(!entree.equals("stop")) {
-            System.out.println("Entrez :\n - 1 pour afficher les coordonnées d'une ville\n" +
-                    " - 2 pour afficher la température actuelle d'une la ville\n" +
-                    " - 3 pour afficher et enregistrer la température d'une la ville\n" +
-                    " - 4 pour afficher les températures enregistrées");
+        while(!entree.equals("0")) {
+            System.out.println("""
+                    Entrez :
+                     - 0 pour arrêter - 1 pour afficher les coordonnées d'une ville
+                     - 2 pour afficher la température actuelle d'une la ville
+                     - 3 pour afficher et enregistrer la température d'une la ville
+                     - 4 pour afficher les températures enregistrées""");
             Scanner sc = new Scanner(System.in);
             entree = sc.nextLine();
             switch (entree) {
-                case "1":
+                case "1" -> {
                     System.out.println("entrez un nom de ville");
                     l.printCoordonnees(sc.nextLine());
-                case "2":
+                }
+                case "2" -> {
                     System.out.println("entrez un nom de ville");
-
+                    l.printTemperature(sc.nextLine());
+                }
+                case "3" -> {
+                    System.out.println("entrez un nom de ville");
+                    l.recordTemperature(sc.nextLine());
+                }
+                case "4" -> {
+                    System.out.println("Affichage table temperature");
+                    l.printTableTemperatures();
+                }
+                case "0" -> System.out.println("Le service va se fermer");
+                default -> System.out.println("L'entrée ne correspond pas au format demandé");
             }
+
+
+            if(!entree.equals("0"))
+                System.out.println("\n\nVous pouvez effectuer une autre demande.");
         }
 
     }

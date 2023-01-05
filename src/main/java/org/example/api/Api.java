@@ -7,7 +7,6 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.text.DecimalFormat;
 import java.util.concurrent.ExecutionException;
 
 public class Api {
@@ -29,7 +28,6 @@ public class Api {
         JSONObject result = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body).thenApply(JSONObject::new).get();
         JSONObject main = result.getJSONObject("main");
-        System.out.println(main);
         float temp = main.getFloat("temp");
         return (temp - 273.15f);
     }

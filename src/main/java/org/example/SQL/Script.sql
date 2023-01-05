@@ -15,3 +15,4 @@ CREATE TABLE temperatures2 (
     worldcity_id INT,
     temperature NUMERIC(4,2)
 );
+GRANT ALL PRIVILEGES ON weather.* TO 'TomVe'@'localhost';

@@ -35,7 +35,7 @@ public class TemperatureDao implements GenericDao<Temperature, Integer>{
     public List<Temperature> readAll() {
         ArrayList<Temperature> temperatures = null;
         Connection connection = MySqlConnection.getConnection();
-        String selectRequest = "SELECT * FROM temperatures";
+        String selectRequest = "SELECT * FROM temperatures ORDER BY city";
         try {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(selectRequest);
