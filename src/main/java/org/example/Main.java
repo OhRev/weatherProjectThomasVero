@@ -10,7 +10,7 @@ import org.json.*;
 import java.sql.Date;
 import java.sql.SQLOutput;
 import java.util.concurrent.ExecutionException;
-
+import org.example.api.Api;
 import org.example.dao.TemperatureDao;
 import org.example.model.Temperature;
 import org.json.JSONObject;
@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class Main {
     public static void main(String[] args)
             throws URISyntaxException, ExecutionException, InterruptedException {
-        // Appel api
+         //Appel api
 
 //        URI line_api_url = new URI("https://api.openweathermap.org/data/2.5/weather?lat=35.6839" +
 //                "&lon=139.7744&appid=8118ed6ee68db2debfaaa5a44c832918");
@@ -38,6 +38,13 @@ public class Main {
 //
 //        System.out.println(main);
 //        System.out.println(temp);
+
+        float lat = 35.6839f;
+        float lng = 139.7744f;
+        Api api = new Api();
+        System.out.println(api.getTemperature(lat, lng) + "°C");
+        System.out.println("******");
+
         Date date = new Date(114,8,20);
         Temperature temperature = new Temperature(date, "Paris", 0.0f);
         TemperatureDao tempDao = new TemperatureDao();
