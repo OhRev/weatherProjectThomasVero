@@ -7,9 +7,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.sql.SQLOutput;
 import java.util.concurrent.ExecutionException;
+import org.json.JSONObject;
 
 public class Main {
-    public static <JSONObject> void main(String[] args) throws URISyntaxException, ExecutionException, InterruptedException {
+    public static <JSONObject> void main(String[] args)
+            throws URISyntaxException, ExecutionException, InterruptedException {
         // Appel api
 
         URI line_api_url = new URI("https://api.openweathermap.org/data/2.5/weather?lat=35.6839" +
@@ -22,20 +24,14 @@ public class Main {
         HttpRequest request = HttpRequest.newBuilder().uri(line_api_url).GET().build();
 
         // demande au client de faire la requete
-//        JSONObject result = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-//                .thenApply(HttpResponse::body).get();
-//
-//        JSONObject main = result.getJSONObject("main");
-//        float temp = main.getFloat("temp");
+        org.json.JSONObject result = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body).thenApply(org.json.JSONObject::new).get();
+        org.json.JSONObject main = result.getJSONObject("main");
+        float temp = main.getFloat("temp");
 
-//        JSONObject result =  client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-//                .thenApply(HttpResponse::body).get();
-//        float temp = result.getJSONObject("main").getFloat("temp");
 
-        String result = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-               .thenApply(HttpResponse::body).get();
-//        System.out.println(result);
-//        System.out.println(temp);
+        System.out.println(main);
+        System.out.println(temp);
 
 
 
