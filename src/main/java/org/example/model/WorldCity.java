@@ -10,6 +10,8 @@ public class WorldCity {
     private String iso2;
     private String iso3;
 
+    public WorldCity() {}
+
     public WorldCity(int id, String city, String city_ascii, float lat, float lng, String country, String iso2, String iso3) {
         this.id = id;
         this.city = city;
