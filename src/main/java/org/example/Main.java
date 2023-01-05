@@ -5,7 +5,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
+
+import org.example.model.Lambda;
 import org.json.*;
 import java.sql.Date;
 import java.sql.SQLOutput;
@@ -39,7 +42,7 @@ public class Main {
 //        System.out.println(main);
 //        System.out.println(temp);
 
-        float lat = 35.6839f;
+        /*float lat = 35.6839f;
         float lng = 139.7744f;
         Api api = new Api();
         System.out.println(api.getTemperature(lat, lng) + "°C");
@@ -49,8 +52,28 @@ public class Main {
         Temperature temperature = new Temperature(date, "Paris", 0.0f);
         TemperatureDao tempDao = new TemperatureDao();
         tempDao.create(temperature);
-        System.out.println(tempDao.readById(4));
+        System.out.println(tempDao.readById(4));*/
+        System.out.println("Démarage du truc, entrez 0 pour arrêter");
+        Lambda l = new Lambda();
+        boolean stop = false;
+        String entree = "";
+        while(!entree.equals("stop")) {
+            System.out.println("Entrez :\n - 1 pour afficher les coordonnées d'une ville\n" +
+                    " - 2 pour afficher la température actuelle d'une la ville\n" +
+                    " - 3 pour afficher et enregistrer la température d'une la ville\n" +
+                    " - 4 pour afficher les températures enregistrées");
+            Scanner sc = new Scanner(System.in);
+            entree = sc.nextLine();
+            switch (entree) {
+                case "1":
+                    System.out.println("entrez un nom de ville");
+                    l.printCoordonnees(sc.nextLine());
+                case "2":
+                    System.out.println("entrez un nom de ville");
 
+            }
+        }
 
     }
+
 }

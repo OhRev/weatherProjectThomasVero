@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.connections.MySqlConnection;
+import org.example.model.Coordonnees;
 import org.example.model.WorldCity;
 
 import java.sql.*;
@@ -55,6 +56,24 @@ public class WorldcityDao implements GenericDao<WorldCity, Integer> {
             String selectRequest = "SELECT * FROM worldcities WHERE num = ?";
             PreparedStatement ps = connection.prepareStatement(selectRequest);
             ps.setInt(1, id);
+            ResultSet result = ps.executeQuery();
+            if(result.next()) {
+                worldCity = createWorlcity(result);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return worldCity;
+    }
+
+    public WorldCity getWorldCityByCity(String city) {
+        Connection connection = MySqlConnection.getConnection();
+
+        WorldCity worldCity = new WorldCity();
+        try {
+            String selectRequest = "SELECT * FROM worldcities WHERE city = ?";
+            PreparedStatement ps = connection.prepareStatement(selectRequest);
+            ps.setString(1, city);
             ResultSet result = ps.executeQuery();
             if(result.next()) {
                 worldCity = createWorlcity(result);
